@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AUSWO User Portal (Mockup)</title>
+<style>
+  :root{
+    --blue:#2d89a7;
+    --bg:#f4f7fb;
+    --text:#1a1e24;
+    --muted:#6b7a90;
+    --card:#ffffff;
+    --shadow: 0 2px 8px rgba(0,0,0,.08);
+    --radius:12px;
+    --gap:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Microsoft YaHei",sans-serif;
+    color:var(--text);
+    background:var(--bg);
+  }
+
+  /* topnav */
+  .topbar{
+    background:var(--blue);
+    color:#fff;
+    height:56px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 16px;
+  }
+  .burger{
+    width:40px;height:40px;border-radius:8px;
+    display:grid;place-items:center; cursor:pointer;
+  }
+  .burger span{
+    width:18px;height:2px;background:#fff;display:block;position:relative;
+  }
+  .burger span::before,.burger span::after{
+    content:"";position:absolute;left:0;right:0;height:2px;background:#fff;
+  }
+  .burger span::before{top:-6px}
+  .burger span::after{top:6px}
+  .brand{font-weight:600;letter-spacing:.2px}
+
+  /* subnav */
+  .subnav{
+    background:var(--blue);
+    color:#fff;
+    padding:10px 16px 14px;
+    box-shadow: var(--shadow);
+  }
+  .subnav-inner{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns: 1fr auto auto;align-items:center;gap:12px;
+  }
+  .menu-strip{
+    display:flex;flex-wrap:wrap;gap:10px;
+  }
+  .menu-chip{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25);
+    color:#fff;
+    height:40px; padding:0 12px; border-radius:10px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .search{
+    display:flex;align-items:center; gap:8px;
+    background:#fff;border-radius:999px;padding:6px 10px; height:40px;
+    min-width:220px;
+  }
+  .search input{
+    border:0;outline:none;width:180px;background:transparent;font-size:14px;
+  }
+  .account{
+    display:flex;align-items:center; gap:8px;
+    background:#fff1;border:1px solid #fff3; color:#fff;
+    height:40px;padding:0 12px;border-radius:999px;
+  }
+
+  /* k */
+  .wrap{max-width:1200px;margin:18px auto;padding:0 16px;}
+  .grid{
+    display:grid;
+    grid-template-columns: 220px 1fr 260px;
+    align-items:start;
+    gap:var(--gap);
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+  .card h3{
+    margin:0;padding:14px 16px;border-bottom:1px solid #eef1f5;font-size:15px;
+  }
+  .card .body{padding:14px 16px;color:var(--muted);font-size:14px;line-height:1.6}
+  .faq ol{margin:0 0 0 18px;padding:0}
+  .faq li{margin:6px 0}
+
+
+
+  /*Chatbot */
+  .chatbot .body{display:grid;gap:10px}
+  .btn{
+    height:40px;border-radius:10px;border:1px solid #e6ebf2;background:#f8fafc;
+    display:grid;place-items:center;font-weight:600;color:#2c5f77;
+  }
+
+
+</style>
+</head>
+<body>
+
+  <!-- topbar -->
+  <header class="topbar">
+    <div class="burger"><span></span></div>
+    <div class="brand">AUSWO User Portal</div>
+  </header>
+
+  <!-- subnav -->
+  <nav class="subnav">
+    <div class="subnav-inner">
+      <div class="menu-strip">
+        <div class="menu-chip">Visa Options</div>
+        <div class="menu-chip">Occupation List</div>
+        <div class="menu-chip">Student Resources</div>
+        <div class="menu-chip">Migration News</div>
+        <div class="menu-chip">Quick News</div>
+      </div>
+      <label class="search">
+        <input type="search" placeholder="Search" />
+      </label>
+      <div class="account">Account</div>
+    </div>
+  </nav>
+
+  <!-- bitch -->
+  <main class="wrap">
+    <section class="grid">
+
+      <!-- faq -->
+      <aside class="left card faq">
+        <h3>Frequently Asked Questions</h3>
+        <div class="body">
+          <ol>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ol>
+          <div style="margin-top:10px;font-size:12px;color:#9aa7b5">Page1</div>
+        </div>
+      </aside>
+
+
+
+      <!-- damn bot -->
+      <aside class="right card chatbot">
+        <h3></h3>
+        <div class="body">
+          <div class="btn"></div>
+          <p style="color:#9aa7b5;font-size:12px;margin:0"></p>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+</body>
+</html>

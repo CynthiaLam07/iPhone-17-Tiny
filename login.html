@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Log In</title>
+  <style>
+    :root{
+      --bg:#2a4465;          
+      --panel:#b27362;        
+      --field:#915f54;        
+      --field-text:#1e1e1e;  
+      --muted:#d9d9d9;       
+      --black:#000;        
+      --white:#fff;
+
+	  --ui-scale: 0.75;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Microsoft YaHei",sans-serif;
+      background:var(--bg);
+      color:var(--white);
+      display:grid;
+      place-items:start center; /* logo sits above panel */
+      padding:32px 16px 48px;
+    }
+
+    .logo{
+      width:120px; height:90px;
+      background:var(--white);
+      display:grid; place-items:center;
+      border-radius:4px;
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
+      margin-bottom:18px;
+    }
+    .logo img{ width:72px; height:72px; object-fit:contain; display:block; }
+
+    .panel{
+      width:min(880px, 100%);
+      background:var(--panel);
+      border-radius:4px;
+      padding:36px 40px 28px;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+	  transform-origin: top center;
+    }
+
+    h1{ margin:0 0 24px; font-size:32px; color:#121212; font-weight:800; }
+    h1 span.lower{ text-transform:lowercase; font-weight:700; }
+
+    /* form */
+    form{ display:grid; gap:16px; }
+    .group{ display:grid; gap:8px; }
+    label{ font-size:18px; color:#1a1a1a; opacity:.92; }
+
+    .field{ position:relative; }
+    input[type="email"],
+    input[type="password"]{
+      width:100%;
+      background:var(--field);
+      color:var(--field-text);
+      border:none; outline:none;
+      border-radius:2px;
+      padding:16px 18px;
+      font-size:24px; /* big like in mock */
+      letter-spacing:.2px;
+    }
+    input::placeholder{ color:#241f1f; opacity:.8; }
+
+    /* password */
+    .pass-row{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px; }
+    .toggle{
+      border:0; cursor:pointer; 
+      background:#3b2a26; color:#efeae8; 
+      padding:12px 18px; border-radius:2px;
+      font-size:26px; line-height:1; min-width:120px;
+    }
+    .toggle[aria-pressed="true"]{ filter:brightness(1.05); }
+	/* forget */
+    .forgot{
+      justify-self:end; margin:-4px 0 4px; /* sits under password */
+      font-size:22px; color:#120c0c; 
+      font-style:italic; text-decoration:underline;
+    }
+
+
+    .login{
+      width:100%; border:0; background:var(--black); color:var(--white);
+      padding:16px; border-radius:2px; font-size:28px; cursor:pointer;
+    }
+
+    /* social row */
+    .social{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px; }
+    .sbtn{ background:var(--muted); color:#0d0d0d; display:flex; align-items:center; gap:16px; border:0; border-radius:2px; padding:14px 18px; font-size:28px; cursor:pointer; }
+    .sbtn svg{ width:40px; height:40px; flex:0 0 40px; }
+
+    /* create account */
+    .create_account{ 
+      display:block; width:100%; margin-top:24px; 
+      border:0; background:var(--black); color:var(--white);
+      padding:18px; font-size:32px; border-radius:2px; cursor:pointer;
+    }
+	@supports (zoom: 1){
+		.panel{ zoom: var(--ui-scale); }
+	}
+	@supports not (zoom: 1){
+	.panel{ transform: scale(var(--ui-scale)); }
+	}
+
+
+  </style>
+</head>
+<body>
+	<!-- don't kiss the logo -->
+  <div class="logo" aria-label="Site logo">
+    <img src="img/logo.jpg" alt="Site logo" />
+  </div>
+
+  <section class="panel" aria-label="Login panel">
+    <h1><span class="lower">log in</span></h1>
+
+    <form action="#" method="post" novalidate>
+		<!-- email -->
+      <div class="group">
+        <label for="email">Email Address</label>
+        <div class="field">
+          <input id="email" name="email" type="email" placeholder="Email Address" autocomplete="username" required />
+        </div>
+      </div>
+
+	  <!-- password -->
+      <div class="group">
+        <label for="password">Password</label>
+        <div class="pass-row">
+          <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required />
+          <button type="button" class="toggle" id="showBtn" aria-pressed="false" aria-controls="password">show</button>
+        </div>
+		<!-- fool? -->
+        <a href="#" class="forgot">Forgot Password</a>
+      </div>
+
+	  <!-- don't fucking log in -->
+      <button class="login" type="submit">Log In</button>
+    </form>
+
+
+	<!-- two cups of shit -->
+    <div class="social" aria-label="Social sign in buttons">
+      <button class="sbtn" type="button" aria-label="Continue with Google">
+        <!-- Google-->
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 9.5c3.4 0 6.5 1.2 8.9 3.5l-3.6 3.6C28 15.1 26.2 14.5 24 14.5c-4.3 0-8 2.9-9.3 6.9l-4.3-3.3C12.6 13 17.9 9.5 24 9.5z" fill="#EA4335"/>
+          <path d="M12.7 21.4c-.3.9-.5 1.9-.5 2.9s.2 2 .5 2.9l-4.3 3.3C7.6 28.1 7 26.1 7 24s.6-4.1 1.4-5.9l4.3 3.3z" fill="#FBBC05"/>
+          <path d="M24 38.5c-6.1 0-11.4-3.5-13.9-8.6l4.3-3.3c1.2 4 5 6.9 9.3 6.9 2.3 0 4.2-.6 5.8-1.8l4.3 3.3C30.5 37.3 27.4 38.5 24 38.5z" fill="#34A853"/>
+          <path d="M40.5 24c0-1-.1-1.9-.3-2.8H24v5.4h9.2c-.4 2.2-1.7 4-3.7 5.2l4.3 3.3c2.5-2.3 4.1-5.8 4.1-11.1z" fill="#4285F4"/>
+        </svg>
+        Google
+      </button>
+      <button class="sbtn" type="button" aria-label="Continue with Facebook">
+        <!-- Facebook-->
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="20" fill="#1877F2"/>
+          <path fill="#fff" d="M26 17h4v-4h-4c-3.3 0-6 2.7-6 6v3h-3v4h3v9h4v-9h4l1-4h-5v-3c0-1.1.9-2 2-2z"/>
+        </svg>
+        Facebook
+      </button>
+    </div>
+	<!-- creat the god damn account-->
+    <button class="create_account" type="button">Create an Account</button>
+  </section>
+
+
+</body>
+</html>
