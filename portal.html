@@ -47,6 +47,10 @@
   .burger span::before{top:-6px}
   .burger span::after{top:6px}
   .brand{font-weight:600;letter-spacing:.2px}
+  .brand2{font-weight:600;letter-spacing:.2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);}
 
   /* subnav */
   .subnav{
@@ -68,11 +72,19 @@
     color:#fff;
     height:40px; padding:0 12px; border-radius:10px;
     display:flex;align-items:center;gap:8px;
+	cursor: pointer;
+  	transition: background .15s ease, border-color .15s ease, box-shadow .2s ease;
+  }
+  .menu-chip:hover {
+    background: rgba(255,255,255,.22);
+    border-color: rgba(255,255,255,.45);
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
   }
   .search{
     display:flex;align-items:center; gap:8px;
     background:#fff;border-radius:999px;padding:6px 10px; height:40px;
     min-width:220px;
+	margin-left: auto;
   }
   .search input{
     border:0;outline:none;width:180px;background:transparent;font-size:14px;
@@ -83,7 +95,7 @@
     height:40px;padding:0 12px;border-radius:999px;
   }
 
-  /* k */
+  /* layout */
   .wrap{max-width:1200px;margin:18px auto;padding:0 16px;}
   .grid{
     display:grid;
@@ -104,16 +116,52 @@
   .faq ol{margin:0 0 0 18px;padding:0}
   .faq li{margin:6px 0}
 
-
-
-  /*Chatbot */
+  /* Chatbot */
   .chatbot .body{display:grid;gap:10px}
   .btn{
     height:40px;border-radius:10px;border:1px solid #e6ebf2;background:#f8fafc;
     display:grid;place-items:center;font-weight:600;color:#2c5f77;
+    cursor:pointer;
   }
 
+  .btn-primary{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:#fff;
+  }
 
+  .ad-backdrop{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0; pointer-events:none;
+    transition:opacity .2s ease;
+    z-index:100;
+  }
+  .ad-modal{
+    position:fixed; inset:0; display:grid; place-items:center;
+    opacity:0; pointer-events:none;
+    transition:opacity .2s ease;
+    z-index:101;
+  }
+  .ad-backdrop.show, .ad-modal.show{ opacity:1; pointer-events:auto; }
+
+  .ad-card{
+    width:min(720px, calc(100vw - 32px));
+    border-radius:16px; overflow:hidden;
+    background:#fff; box-shadow:0 12px 40px rgba(0,0,0,.25);
+  }
+  /* ad.img */
+  .ad-hero{
+    display:block; width:100%;
+    height:min(60vh, 480px);  
+    object-fit:cover;      
+    background:#e7eef6;     
+  }
+  .ad-actions{
+    display:flex; gap:12px; justify-content:space-between;
+    padding:12px;
+  }
+  /* ================================================ */
 </style>
 </head>
 <body>
@@ -121,27 +169,29 @@
   <!-- topbar -->
   <header class="topbar">
     <div class="burger"><span></span></div>
-    <div class="brand">AUSWO User Portal</div>
+    <div class="brand">AUSWO</div>
+	<div class="brand2">User Portal</div>
+	<label class="search">
+        <input type="search" placeholder="Search" />
+    </label>
+    <div class="account">Account</div>
   </header>
 
   <!-- subnav -->
   <nav class="subnav">
     <div class="subnav-inner">
       <div class="menu-strip">
-        <div class="menu-chip">Visa Options</div>
-        <div class="menu-chip">Occupation List</div>
-        <div class="menu-chip">Student Resources</div>
-        <div class="menu-chip">Migration News</div>
-        <div class="menu-chip">Quick News</div>
+        <button class="menu-chip" type="button" onclick="location.href='visa_options.html'">Visa Options</button>
+        <button class="menu-chip" type="button" onclick="location.href='occupation_list.html'">Occupation List</button>
+        <button class="menu-chip" type="button" onclick="location.href='student_resources.html'">Student Resources</button>
+        <button class="menu-chip" type="button" onclick="location.href='migration_news.html'">Migration News</button>
+        <button class="menu-chip" type="button" onclick="location.href='quick_news.html'">Quick News</button>
+        <button class="menu-chip" type="button" onclick="location.href='dickCalculator.html'">Points Calculator</button>
       </div>
-      <label class="search">
-        <input type="search" placeholder="Search" />
-      </label>
-      <div class="account">Account</div>
     </div>
   </nav>
 
-  <!-- bitch -->
+  <!-- content -->
   <main class="wrap">
     <section class="grid">
 
@@ -159,7 +209,6 @@
       </aside>
 
 
-
       <!-- damn bot -->
       <aside class="right card chatbot">
         <h3></h3>
@@ -171,6 +220,64 @@
 
     </section>
   </main>
+
+  <!-- ad -->
+  <!-- background -->
+  <div id="adBackdrop" class="ad-backdrop" hidden></div>
+  <!-- ad -->
+  <div id="adModal" class="ad-modal" role="dialog" aria-modal="true" aria-labelledby="adTitle" hidden>
+    <div class="ad-card" aria-describedby="adActions">
+      <img class="ad-hero" src="img/ad1.png" alt="whoa dick man" />
+      <div id="adActions" class="ad-actions">
+        <button id="adTry" class="btn" type="button">Try it for free</button>
+        <button id="adJoin" class="btn btn-primary" type="button">Join membership</button>
+      </div>
+    </div>
+  </div>
+  <!-- =================================================== -->
+
+<script>
+  // ad
+  const adModal    = document.getElementById('adModal');
+  const adBackdrop = document.getElementById('adBackdrop');
+  const adTry      = document.getElementById('adTry');
+  const adJoin     = document.getElementById('adJoin');
+
+  // ad window
+  function openAd(){
+    adModal.hidden = false;
+    adBackdrop.hidden = false;
+    requestAnimationFrame(() => {
+      adModal.classList.add('show');
+      adBackdrop.classList.add('show');
+    });
+  }
+
+  // close ad
+  function closeAd(){
+    adModal.classList.remove('show');
+    adBackdrop.classList.remove('show');
+    setTimeout(() => {
+      adModal.hidden = true;
+      adBackdrop.hidden = true;
+    }, 200); 
+  }
+
+  // time to pop an ad!!!
+  window.addEventListener('load', () => {
+    setTimeout(openAd, 7000);
+  });
+
+  // close
+  adTry.addEventListener('click', closeAd);
+  adBackdrop.addEventListener('click', closeAd);
+
+  // jump
+  adJoin.addEventListener('click', () => {
+    window.location.href = 'monkey.html';
+  });
+  // ====================================================
+</script>
 
 </body>
 </html>
