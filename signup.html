@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign up - AUSWO</title>
+<style>
+
+
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+
+  /* nav */
+  .top {
+    background-color: #2a86ab;
+    height: 80px;
+    text-align: center;
+    position: relative;
+  }
+  .logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transform: translateX(-50%);
+    overflow: hidden;
+  }
+  .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* cards */
+  .card {
+    background-color: #eaf4f8;
+    width: 350px;
+    margin: 80px auto 20px;
+    padding: 20px;
+  }
+  .card h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .field {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  .field input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #ddd;
+  }
+  .field button {
+    padding: 8px;
+    border: none;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+
+  .submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #2a86ab;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* footbar */
+  .footer-bar {
+    width: 350px;
+    background-color: #2a86ab;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+  }
+  .footer-bar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- top of dick -->
+  <div class="top">
+    <div class="logo">
+      <img src="img/logo2.jpg" alt="AUSWO Logo">
+    </div>
+  </div>
+
+  <!-- shit -->
+  <form id="signupForm" class="card">
+  <h1>Sign up</h1>
+
+  <div class="field">
+    <input id="username" type="text" placeholder="Username" required>
+  </div>
+  <div class="field">
+    <input id="age" type="number" min="0" max="120" placeholder="Age">
+  </div>
+  <div class="field">
+    <input id="email" type="email" placeholder="Email Address" required>
+  </div>
+  <div class="field">
+    <input id="password" type="password" placeholder="Password" required>
+    <button type="button">show</button>
+  </div>
+  <div class="field">
+    <input id="confirm" type="password" placeholder="Confirm Password" required>
+    <button type="button">show</button>
+  </div>
+  <div class="field">
+    <input id="phone" type="tel" placeholder="Phone number">
+    <button type="button">verify</button>
+  </div>
+  <div class="field">
+    <input id="passcode" type="text" placeholder="Passcode">
+  </div>
+
+  <button type="submit" class="submit">Create Account</button>
+  <p id="msg"></p>
+</form>
+
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const form = $('signupForm');
+  const msg  = $('msg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); 
+    const username = $('username')?.value?.trim();
+    const email    = $('email')?.value?.trim();
+    const password = $('password')?.value ?? '';
+    const confirm  = $('confirm')?.value ?? '';
+    const phone    = $('phone')?.value?.trim() || null;
+    const passcode = $('passcode')?.value?.trim() || null;
+    const ageRaw   = $('age')?.value?.trim();
+    const age      = (ageRaw === '' || ageRaw == null) ? null : Number(ageRaw);
+
+   
+    if (!username || !email || !password) return show('Username, Email and Password are required.');
+    if (password !== confirm) return show('Passwords do not match.');
+    if (age !== null && (Number.isNaN(age) || age < 0 || age > 120)) return show('Age must be 0–120.');
+
+    try {
+      console.log('[signup] sending payload…');
+      const res = await fetch('http://localhost:3000/api/signup', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ username, email, password, phone, passcode, age })
+      });
+      const out = await res.json();
+      if (!res.ok) return show('Error: ' + (out.error || res.status));
+
+      show(out.message ||('Account created! user id: ' + out.id));
+      form.reset();
+      setTimeout(() => { window.location.href = 'portal.html'; }, 1000);
+    } catch (err) {
+      console.error(err);
+      show('Network error. Is the server running on :3000?');
+    }
+  });
+
+  function show(text){ if (msg) msg.textContent = text; else alert(text); }
+})();
+</script>
+
+
+
+</body>
+</html>

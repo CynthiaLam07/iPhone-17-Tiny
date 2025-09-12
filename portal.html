@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AUSWO User Portal (Mockup)</title>
+<style>
+  :root{
+    --blue:#2d89a7;
+    --bg:#f4f7fb;
+    --text:#1a1e24;
+    --muted:#6b7a90;
+    --card:#ffffff;
+    --shadow: 0 2px 8px rgba(0,0,0,.08);
+    --radius:12px;
+    --gap:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Microsoft YaHei",sans-serif;
+    color:var(--text);
+    background:var(--bg);
+  }
+
+  /* topnav */
+  .topbar{
+    background:var(--blue);
+    color:#fff;
+    height:56px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 16px;
+  }
+  .burger{
+    width:40px;height:40px;border-radius:8px;
+    display:grid;place-items:center; cursor:pointer;
+  }
+  .burger span{
+    width:18px;height:2px;background:#fff;display:block;position:relative;
+  }
+  .burger span::before,.burger span::after{
+    content:"";position:absolute;left:0;right:0;height:2px;background:#fff;
+  }
+  .burger span::before{top:-6px}
+  .burger span::after{top:6px}
+  .brand{font-weight:600;letter-spacing:.2px}
+  .brand2{font-weight:600;letter-spacing:.2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);}
+
+  /* subnav */
+  .subnav{
+    background:var(--blue);
+    color:#fff;
+    padding:10px 16px 14px;
+    box-shadow: var(--shadow);
+  }
+  .subnav-inner{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns: 1fr auto auto;align-items:center;gap:12px;
+  }
+  .menu-strip{
+    display:flex;flex-wrap:wrap;gap:10px;
+  }
+  .menu-chip{
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.25);
+    color:#fff;
+    height:40px; padding:0 12px; border-radius:10px;
+    display:flex;align-items:center;gap:8px;
+	cursor: pointer;
+  	transition: background .15s ease, border-color .15s ease, box-shadow .2s ease;
+  }
+  .menu-chip:hover {
+    background: rgba(255,255,255,.22);
+    border-color: rgba(255,255,255,.45);
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  }
+  .search{
+    display:flex;align-items:center; gap:8px;
+    background:#fff;border-radius:999px;padding:6px 10px; height:40px;
+    min-width:220px;
+	margin-left: auto;
+  }
+  .search input{
+    border:0;outline:none;width:180px;background:transparent;font-size:14px;
+  }
+  .account{
+    display:flex;align-items:center; gap:8px;
+    background:#fff1;border:1px solid #fff3; color:#fff;
+    height:40px;padding:0 12px;border-radius:999px;
+  }
+
+  /* layout */
+  .wrap{max-width:1200px;margin:18px auto;padding:0 16px;}
+  .grid{
+    display:grid;
+    grid-template-columns: 220px 1fr 260px;
+    align-items:start;
+    gap:var(--gap);
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+  .card h3{
+    margin:0;padding:14px 16px;border-bottom:1px solid #eef1f5;font-size:15px;
+  }
+  .card .body{padding:14px 16px;color:var(--muted);font-size:14px;line-height:1.6}
+  .faq ol{margin:0 0 0 18px;padding:0}
+  .faq li{margin:6px 0}
+
+  /* Chatbot */
+  .chatbot .body{display:grid;gap:10px}
+  .btn{
+    height:40px;border-radius:10px;border:1px solid #e6ebf2;background:#f8fafc;
+    display:grid;place-items:center;font-weight:600;color:#2c5f77;
+    cursor:pointer;
+  }
+
+  .btn-primary{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:#fff;
+  }
+
+  .ad-backdrop{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0; pointer-events:none;
+    transition:opacity .2s ease;
+    z-index:100;
+  }
+  .ad-modal{
+    position:fixed; inset:0; display:grid; place-items:center;
+    opacity:0; pointer-events:none;
+    transition:opacity .2s ease;
+    z-index:101;
+  }
+  .ad-backdrop.show, .ad-modal.show{ opacity:1; pointer-events:auto; }
+
+  .ad-card{
+    width:min(720px, calc(100vw - 32px));
+    border-radius:16px; overflow:hidden;
+    background:#fff; box-shadow:0 12px 40px rgba(0,0,0,.25);
+  }
+  /* ad.img */
+  .ad-hero{
+    display:block; width:100%;
+    height:min(60vh, 480px);  
+    object-fit:cover;      
+    background:#e7eef6;     
+  }
+  .ad-actions{
+    display:flex; gap:12px; justify-content:space-between;
+    padding:12px;
+  }
+  /* ================================================ */
+</style>
+</head>
+<body>
+
+  <!-- topbar -->
+  <header class="topbar">
+    <div class="burger"><span></span></div>
+    <div class="brand">AUSWO</div>
+	<div class="brand2">User Portal</div>
+	<label class="search">
+        <input type="search" placeholder="Search" />
+    </label>
+    <div class="account">Account</div>
+  </header>
+
+  <!-- subnav -->
+  <nav class="subnav">
+    <div class="subnav-inner">
+      <div class="menu-strip">
+        <button class="menu-chip" type="button" onclick="location.href='visa_options.html'">Visa Options</button>
+        <button class="menu-chip" type="button" onclick="location.href='occupation_list.html'">Occupation List</button>
+        <button class="menu-chip" type="button" onclick="location.href='student_resources.html'">Student Resources</button>
+        <button class="menu-chip" type="button" onclick="location.href='migration_news.html'">Migration News</button>
+        <button class="menu-chip" type="button" onclick="location.href='quick_news.html'">Quick News</button>
+        <button class="menu-chip" type="button" onclick="location.href='dickCalculator.html'">Points Calculator</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- content -->
+  <main class="wrap">
+    <section class="grid">
+
+      <!-- faq -->
+      <aside class="left card faq">
+        <h3>Frequently Asked Questions</h3>
+        <div class="body">
+          <ol>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ol>
+          <div style="margin-top:10px;font-size:12px;color:#9aa7b5">Page1</div>
+        </div>
+      </aside>
+
+
+      <!-- damn bot -->
+      <aside class="right card chatbot">
+        <h3></h3>
+        <div class="body">
+          <div class="btn"></div>
+          <p style="color:#9aa7b5;font-size:12px;margin:0"></p>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+  <!-- ad -->
+  <!-- background -->
+  <div id="adBackdrop" class="ad-backdrop" hidden></div>
+  <!-- ad -->
+  <div id="adModal" class="ad-modal" role="dialog" aria-modal="true" aria-labelledby="adTitle" hidden>
+    <div class="ad-card" aria-describedby="adActions">
+      <img class="ad-hero" src="img/ad1.png" alt="whoa dick man" />
+      <div id="adActions" class="ad-actions">
+        <button id="adTry" class="btn" type="button">Try it for free</button>
+        <button id="adJoin" class="btn btn-primary" type="button">Join membership</button>
+      </div>
+    </div>
+  </div>
+  <!-- =================================================== -->
+
+<script>
+  // ad
+  const adModal    = document.getElementById('adModal');
+  const adBackdrop = document.getElementById('adBackdrop');
+  const adTry      = document.getElementById('adTry');
+  const adJoin     = document.getElementById('adJoin');
+
+  // ad window
+  function openAd(){
+    adModal.hidden = false;
+    adBackdrop.hidden = false;
+    requestAnimationFrame(() => {
+      adModal.classList.add('show');
+      adBackdrop.classList.add('show');
+    });
+  }
+
+  // close ad
+  function closeAd(){
+    adModal.classList.remove('show');
+    adBackdrop.classList.remove('show');
+    setTimeout(() => {
+      adModal.hidden = true;
+      adBackdrop.hidden = true;
+    }, 200); 
+  }
+
+  // time to pop an ad!!!
+  window.addEventListener('load', () => {
+    setTimeout(openAd, 7000);
+  });
+
+  // close
+  adTry.addEventListener('click', closeAd);
+  adBackdrop.addEventListener('click', closeAd);
+
+  // jump
+  adJoin.addEventListener('click', () => {
+    window.location.href = 'monkey.html';
+  });
+  // ====================================================
+</script>
+
+
+</body>
+</html>
