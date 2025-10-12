@@ -33,6 +33,7 @@
     align-items:center;
     gap:12px;
     padding:0 16px;
+    position: relative;
   }
   .burger{
     width:40px;height:40px;border-radius:8px;
@@ -47,10 +48,10 @@
   .burger span::before{top:-6px}
   .burger span::after{top:6px}
   .brand{font-weight:600;letter-spacing:.2px}
-  .brand2{font-weight:600;letter-spacing:.2px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);}
+  .brand2{
+    font-weight:600;letter-spacing:.2px;
+    position:absolute;left:50%;transform:translateX(-50%);
+  }
 
   /* subnav */
   .subnav{
@@ -72,8 +73,8 @@
     color:#fff;
     height:40px; padding:0 12px; border-radius:10px;
     display:flex;align-items:center;gap:8px;
-	cursor: pointer;
-  	transition: background .15s ease, border-color .15s ease, box-shadow .2s ease;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, box-shadow .2s ease;
   }
   .menu-chip:hover {
     background: rgba(255,255,255,.22);
@@ -84,7 +85,7 @@
     display:flex;align-items:center; gap:8px;
     background:#fff;border-radius:999px;padding:6px 10px; height:40px;
     min-width:220px;
-	margin-left: auto;
+    margin-left: auto;
   }
   .search input{
     border:0;outline:none;width:180px;background:transparent;font-size:14px;
@@ -93,6 +94,8 @@
     display:flex;align-items:center; gap:8px;
     background:#fff1;border:1px solid #fff3; color:#fff;
     height:40px;padding:0 12px;border-radius:999px;
+    text-decoration:none;
+    cursor:pointer;
   }
 
   /* layout */
@@ -123,13 +126,13 @@
     display:grid;place-items:center;font-weight:600;color:#2c5f77;
     cursor:pointer;
   }
-
   .btn-primary{
     background:var(--blue);
     border-color:var(--blue);
     color:#fff;
   }
 
+  /* ad */
   .ad-backdrop{
     position:fixed; inset:0;
     background:rgba(0,0,0,.45);
@@ -144,24 +147,19 @@
     z-index:101;
   }
   .ad-backdrop.show, .ad-modal.show{ opacity:1; pointer-events:auto; }
-
   .ad-card{
     width:min(720px, calc(100vw - 32px));
     border-radius:16px; overflow:hidden;
     background:#fff; box-shadow:0 12px 40px rgba(0,0,0,.25);
   }
-  /* ad.img */
   .ad-hero{
-    display:block; width:100%;
-    height:min(60vh, 480px);  
-    object-fit:cover;      
-    background:#e7eef6;     
+    display:block; width:100%; height:min(60vh, 480px);
+    object-fit:cover; background:#e7eef6;
   }
   .ad-actions{
     display:flex; gap:12px; justify-content:space-between;
     padding:12px;
   }
-  /* ================================================ */
 </style>
 </head>
 <body>
@@ -170,23 +168,24 @@
   <header class="topbar">
     <div class="burger"><span></span></div>
     <div class="brand">AUSWO</div>
-	<div class="brand2">User Portal</div>
-	<label class="search">
+    <div class="brand2">User Portal</div>
+    <label class="search">
         <input type="search" placeholder="Search" />
     </label>
-    <div class="account">Account</div>
+    <!-- 已改为 Sign in/up 跳转登录页 -->
+    <a class="account" href="login.html">Sign in/up</a>
   </header>
 
   <!-- subnav -->
   <nav class="subnav">
     <div class="subnav-inner">
       <div class="menu-strip">
-        <button class="menu-chip" type="button" onclick="location.href='visa_options.html'">Visa Options</button>
-        <button class="menu-chip" type="button" onclick="location.href='occupation_list.html'">Occupation List</button>
-        <button class="menu-chip" type="button" onclick="location.href='student_resources.html'">Student Resources</button>
-        <button class="menu-chip" type="button" onclick="location.href='migration_news.html'">Migration News</button>
-        <button class="menu-chip" type="button" onclick="location.href='quick_news.html'">Quick News</button>
-        <button class="menu-chip" type="button" onclick="location.href='dickCalculator.html'">Points Calculator</button>
+        <button class="menu-chip" onclick="location.href='visa_options.html'">Visa Options</button>
+        <button class="menu-chip" onclick="location.href='occupation_list.html'">Occupation List</button>
+        <button class="menu-chip" onclick="location.href='student_resources.html'">Student Resources</button>
+        <button class="menu-chip" onclick="location.href='migration_news.html'">Migration News</button>
+        <button class="menu-chip" onclick="location.href='quick_news.html'">Quick News</button>
+        <button class="menu-chip" onclick="location.href='dickCalculator.html'">Points Calculator</button>
       </div>
     </div>
   </nav>
@@ -194,22 +193,14 @@
   <!-- content -->
   <main class="wrap">
     <section class="grid">
-
-      <!-- faq -->
       <aside class="left card faq">
         <h3>Frequently Asked Questions</h3>
         <div class="body">
-          <ol>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ol>
+          <ol><li></li><li></li><li></li></ol>
           <div style="margin-top:10px;font-size:12px;color:#9aa7b5">Page1</div>
         </div>
       </aside>
 
-
-      <!-- damn bot -->
       <aside class="right card chatbot">
         <h3></h3>
         <div class="body">
@@ -217,66 +208,32 @@
           <p style="color:#9aa7b5;font-size:12px;margin:0"></p>
         </div>
       </aside>
-
     </section>
   </main>
 
-  <!-- ad -->
-  <!-- background -->
+
   <div id="adBackdrop" class="ad-backdrop" hidden></div>
-  <!-- ad -->
-  <div id="adModal" class="ad-modal" role="dialog" aria-modal="true" aria-labelledby="adTitle" hidden>
-    <div class="ad-card" aria-describedby="adActions">
-      <img class="ad-hero" src="img/ad1.png" alt="whoa dick man" />
-      <div id="adActions" class="ad-actions">
-        <button id="adTry" class="btn" type="button">Try it for free</button>
-        <button id="adJoin" class="btn btn-primary" type="button">Join membership</button>
+  <div id="adModal" class="ad-modal" hidden>
+    <div class="ad-card">
+      <img class="ad-hero" src="img/ad1.png" alt="ad">
+      <div class="ad-actions">
+        <button id="adTry" class="btn">Try it for free</button>
+        <button id="adJoin" class="btn btn-primary">Join membership</button>
       </div>
     </div>
   </div>
-  <!-- =================================================== -->
 
 <script>
-  // ad
-  const adModal    = document.getElementById('adModal');
+  const adModal = document.getElementById('adModal');
   const adBackdrop = document.getElementById('adBackdrop');
-  const adTry      = document.getElementById('adTry');
-  const adJoin     = document.getElementById('adJoin');
-
-  // ad window
-  function openAd(){
-    adModal.hidden = false;
-    adBackdrop.hidden = false;
-    requestAnimationFrame(() => {
-      adModal.classList.add('show');
-      adBackdrop.classList.add('show');
-    });
-  }
-
-  // close ad
-  function closeAd(){
-    adModal.classList.remove('show');
-    adBackdrop.classList.remove('show');
-    setTimeout(() => {
-      adModal.hidden = true;
-      adBackdrop.hidden = true;
-    }, 200); 
-  }
-
-  // time to pop an ad!!!
-  window.addEventListener('load', () => {
-    setTimeout(openAd, 7000);
-  });
-
-  // close
-  adTry.addEventListener('click', closeAd);
-  adBackdrop.addEventListener('click', closeAd);
-
-  // jump
-  adJoin.addEventListener('click', () => {
-    window.location.href = 'monkey.html';
-  });
-  // ====================================================
+  const adTry = document.getElementById('adTry');
+  const adJoin = document.getElementById('adJoin');
+  function openAd(){ adModal.hidden=false;adBackdrop.hidden=false;requestAnimationFrame(()=>{adModal.classList.add('show');adBackdrop.classList.add('show');});}
+  function closeAd(){ adModal.classList.remove('show');adBackdrop.classList.remove('show');setTimeout(()=>{adModal.hidden=true;adBackdrop.hidden=true;},200);}
+  window.addEventListener('load',()=>setTimeout(openAd,7000));
+  adTry.addEventListener('click',closeAd);
+  adBackdrop.addEventListener('click',closeAd);
+  adJoin.addEventListener('click',()=>window.location.href='monkey.html');
 </script>
 
 </body>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>profile.html – Teal Portal Style (Static)</title>
+  <style>
+
+    :root{
+      --bg:#edf3f6;--surface:#ffffff;--surface-weak:#f6fafb;--border:#e2e8f0;
+      --text:#1b2733;--muted:#65748b;--brand:#1e808c;--link:#147bd1;
+      --radius-xl:18px;--shadow-sm:0 1px 2px rgba(16,24,40,.06);
+      --shadow-md:0 6px 20px rgba(16,24,40,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:15px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text)}
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+    button{font:inherit}
+
+    /*  Header  */
+    .header{position:sticky;top:0;z-index:40;background:var(--brand);color:#fff;box-shadow:var(--shadow-sm)}
+    .header-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:14px 18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .menu-btn{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);cursor:pointer}
+    .menu-btn svg{width:20px;height:20px;fill:#fff}
+    .brand-name{font-weight:800;letter-spacing:.08em}
+    .header-title{justify-self:center;font-weight:700}
+    .header-right{display:flex;align-items:center;gap:12px}
+    .search-pill{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #dbe6ea;border-radius:999px;padding:8px 14px;min-width:240px}
+    .search-pill input{border:0;outline:0;background:transparent;width:100%}
+    .account-pill{padding:9px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff;font-weight:700}
+
+    .container{max-width:1200px;margin:22px auto;padding:0 18px}
+    .hero{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:22px 24px;box-shadow:var(--shadow-md)}
+    .hero h1{font-size:32px;margin:0 0 6px}
+    .hero p{margin:0;color:var(--muted)}
+    .avatar{width:80px;height:80px;border-radius:50%;background:radial-gradient(60% 65% at 25% 25%,#293143,#0e1420);border:4px solid #fff;box-shadow:0 10px 22px rgba(14,20,32,.25)}
+    .quick-search{display:flex;align-items:center;gap:10px;background:var(--surface-weak);border:1px solid var(--border);border-radius:999px;padding:12px 16px;margin:18px 0}
+    .quick-search input{border:0;background:transparent;outline:0;width:100%}
+
+    .quick-links{display:flex;flex-wrap:wrap;gap:12px}
+    .pill{background:#fff;border:1px solid #d9e4ea;border-radius:999px;padding:10px 16px;box-shadow:var(--shadow-sm);cursor:pointer}
+    .pill[aria-selected="true"]{border-color:#b9d5de;box-shadow:0 4px 14px rgba(16,24,40,.08)}
+    .tabs-region{margin-top:18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);box-shadow:var(--shadow-md);padding:18px 20px;min-height:180px}
+    .panel{display:none}
+    .panel.active{display:block}
+
+    .footer{display:flex;gap:18px;color:var(--muted);padding:24px 0}
+
+    /* ===== Responsive ===== */
+    @media (max-width:820px){
+      .hero{flex-direction:column;align-items:flex-start;gap:12px}
+      .search-pill{min-width:160px}
+    }
+    .svg{width:18px;height:18px;fill:#8899aa}
+
+    /* Personal Info  */
+    #panel-info .g-wrap{display:grid;gap:18px}
+    #panel-info .g-hero{
+      display:grid;gap:8px;background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--radius-xl);padding:22px 24px;box-shadow:var(--shadow-md)
+    }
+    #panel-info .g-hero h2{margin:0;font-size:26px}
+    #panel-info .g-hero p{margin:0;color:var(--muted)}
+
+    #panel-info .g-card{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--radius-xl);box-shadow:var(--shadow-md)
+    }
+    #panel-info .g-card .g-hd{
+      padding:18px 20px;border-bottom:1px solid var(--border);font-weight:700
+    }
+    #panel-info .g-card .g-row{
+      display:grid;grid-template-columns:180px 1fr auto;align-items:center;
+      gap:16px;padding:16px 20px;border-top:1px solid var(--border)
+    }
+    #panel-info .g-row:first-of-type{border-top:0}
+    #panel-info .g-muted{color:var(--muted)}
+    #panel-info .g-avatar{
+      position:relative;width:64px;height:64px;border-radius:50%;overflow:hidden;
+      border:3px solid #fff;box-shadow:0 8px 16px rgba(16,24,40,.15);
+      background:#000;
+    }
+    #panel-info .g-arrow{width:22px;height:22px;fill:#98a5b3}
+    #panel-info .g-row:hover{background:var(--surface-weak)}
+
+    /* Addresses  */
+    #panel-info .g-sub{background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--radius-xl);box-shadow:var(--shadow-md);overflow:hidden}
+    #panel-info .g-sub .g-hd{padding:22px 20px 8px;font-size:26px;font-weight:700}
+    #panel-info .g-sub .g-desc{padding:0 20px 14px;color:var(--muted)}
+    #panel-info .g-sub .g-row{
+      display:grid;grid-template-columns:180px 1fr auto;align-items:center;
+      gap:16px;padding:18px 20px;border-top:1px solid var(--border)}
+    #panel-info .g-sub .g-row:first-of-type{border-top:0}
+    #panel-info .g-sub .g-row.alt{background:#f6f7f8}
+    #panel-info .g-email-list, #panel-info .g-phone-list{display:grid;gap:8px}
+    #panel-info .g-sub a{color:var(--link)}
+    #panel-info .g-addr .g-hd{display:flex;align-items:flex-end;gap:10px}
+    #panel-info .g-addr .g-hd small{font-size:14px;font-weight:400;color:var(--muted)}
+
+    @media (max-width:720px){
+      #panel-info .g-row,
+      #panel-info .g-sub .g-row{
+        grid-template-columns:1fr auto;
+        grid-template-areas:"label arrow" "desc arrow";
+      }
+      #panel-info .g-label{grid-area:label}
+      #panel-info .g-desc{grid-area:desc}
+    }
+  </style>
+</head>
+<body>
+  <!--Header-->
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <button class="menu-btn" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+        </button>
+        <span class="brand-name">AUSWO</span>
+      </div>
+      <div class="header-title">User Profile</div>
+      <div class="header-right">
+        <label class="search-pill">
+          <svg class="svg" viewBox="0 0 24 24"><path d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.41-1.41-4.25-4.25A6 6 0 0010 4z"/></svg>
+          <input placeholder="Search" />
+        </label>
+        <span class="account-pill">Account</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 。-->
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Welcome</h1>
+        <p>Manage your info, privacy and security to make your portal work better for you.</p>
+      </div>
+      <div class="avatar" aria-hidden="true"></div>
+    </section>
+
+    <label class="quick-search">
+      <svg class="svg" viewBox="0 0 24 24"><path d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.41-1.41-4.25-4.25A6 6 0 0010 4z"/></svg>
+      <input placeholder="Search profile settings" />
+    </label>
+
+    <!-- btns-->
+    <div class="quick-links" role="tablist" aria-label="Profile sections">
+      <button class="pill" role="tab" id="tab-home" aria-controls="panel-home" aria-selected="true">Home</button>
+      <button class="pill" role="tab" id="tab-info" aria-controls="panel-info" aria-selected="false">Personal Info</button>
+      <button class="pill" role="tab" id="tab-sec"  aria-controls="panel-sec"  aria-selected="false">Security</button>
+      <button class="pill" role="tab" id="tab-pay"  aria-controls="panel-pay"  aria-selected="false">Payment and subscription</button>
+    </div>
+
+    <!-- Panels -->
+    <section class="tabs-region">
+      <div class="panel active" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+        <h3>Home</h3>
+        <p>Placeholder </p>
+      </div>
+
+      <!-- Personal Info-->
+      <div class="panel" id="panel-info" role="tabpanel" aria-labelledby="tab-info">
+        <div class="g-wrap">
+          <!-- Top description -->
+          <section class="g-hero">
+            <h2>Your profile info in AUSWO</h2>
+            <p>Info about you and your preferences across AUSWO services</p>
+          </section>
+
+          <!-- Basic info plane -->
+          <section class="g-card" aria-labelledby="g-basic-title">
+            <div class="g-hd" id="g-basic-title">Basic info</div>
+
+            <!-- Profile picture -->
+            <div class="g-row">
+              <div class="g-label g-muted">Profile picture</div>
+              <div class="g-desc" style="display:flex;align-items:center;gap:14px">
+                <span class="g-muted">A profile picture helps personalise your account</span>
+              </div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+
+            <!-- Name -->
+            <div class="g-row">
+              <div class="g-label g-muted">Name</div>
+              <div class="g-desc">八嘎</div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+
+            <!-- Birthday -->
+            <div class="g-row">
+              <div class="g-label g-muted">Birthday</div>
+              <div class="g-desc">32 October 1203</div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+
+            <!-- Gender -->
+            <div class="g-row">
+              <div class="g-label g-muted">Gender</div>
+              <div class="g-desc">吃狗屎</div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+          </section>
+
+          <!-- Contact info -->
+          <section class="g-sub" aria-labelledby="g-contact-title">
+            <div class="g-hd" id="g-contact-title">Contact info</div>
+
+            <!-- Email -->
+            <div class="g-row">
+              <div class="g-label g-muted">Email</div>
+              <div class="g-desc">
+                <div class="g-email-list">
+                  <div>23432432@dogmail.com</div>
+                  <div>b3333335@icloudy.com</div>
+                </div>
+              </div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+
+            <!-- Phone-->
+            <div class="g-row alt">
+              <div class="g-label g-muted">Phone</div>
+              <div class="g-desc">
+                <div class="g-phone-list">
+                  <div>33333 333</div>
+                  <div>4444444</div>
+                </div>
+              </div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+          </section>
+
+          <!-- Addresses -->
+          <section class="g-sub g-addr" aria-labelledby="g-addr-title">
+            <div class="g-hd" id="g-addr-title">
+              <span>Addresses</span>
+              <small>Manage addresses associated with your Google Account.
+                <a href="#">Learn more about addresses saved to your account</a>
+              </small>
+            </div>
+
+            <!-- Home-->
+            <div class="g-row alt">
+              <div class="g-label g-muted">Home</div>
+              <div class="g-desc g-muted">Not set</div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+
+            <!-- Work -->
+            <div class="g-row">
+              <div class="g-label g-muted">Work</div>
+              <div class="g-desc g-muted">Not set</div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+
+            <hr style="border:0;border-top:1px solid var(--border);margin:0 20px">
+
+            <!-- Other -->
+            <div class="g-row">
+              <div class="g-label g-muted">Other</div>
+              <div class="g-desc g-muted">Other addresses that you added</div>
+              <svg class="g-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-sec" role="tabpanel" aria-labelledby="tab-sec">
+        <h3>Security</h3>
+        <p>Placeholder — passwords, 2-step, device activity…</p>
+      </div>
+      <div class="panel" id="panel-pay" role="tabpanel" aria-labelledby="tab-pay">
+        <h3>Payment &amp; Subscription</h3>
+        <p>Placeholder — plans, invoices, payment methods…</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Help</a><a href="#">About</a>
+    </footer>
+  </main>
+
+  <script>
+    const tabs   = Array.from(document.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(document.querySelectorAll('.panel'));
+
+    function activate(id){
+      tabs.forEach(t=>{
+        const on = t.id === 'tab-' + id;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach(p=>{
+        p.classList.toggle('active', p.id === 'panel-' + id);
+      });
+      history.replaceState(null,'','#'+id);
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => {
+      activate(t.id.replace('tab-',''));
+    }));
+
+    document.querySelector('.quick-links').addEventListener('keydown', (e)=>{
+      if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
+      e.preventDefault();
+      const i = tabs.findIndex(t => t.getAttribute('aria-selected')==='true');
+      let n = i;
+      if(e.key==='ArrowRight') n = (i+1) % tabs.length;
+      if(e.key==='ArrowLeft')  n = (i-1+tabs.length) % tabs.length;
+      if(e.key==='Home')       n = 0;
+      if(e.key==='End')        n = tabs.length-1;
+      tabs[n].focus(); tabs[n].click();
+    });
+
+    const fromHash = location.hash.replace('#','');
+    if (fromHash && document.getElementById('panel-' + fromHash)) activate(fromHash);
+  </script>
+</body>
+</html>
