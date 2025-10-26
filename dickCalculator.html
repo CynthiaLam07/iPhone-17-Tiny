@@ -24,8 +24,6 @@
     color:var(--text);
     background:var(--bg);
   }
-
-  /* Top*/
   .topbar{
     background:var(--blue); color:#fff; height:56px;
     display:flex; align-items:center; gap:12px; padding:0 16px; position:relative;
@@ -34,7 +32,6 @@
   .burger span{width:18px;height:2px;background:#fff;display:block;position:relative}
   .burger span::before,.burger span::after{content:"";position:absolute;left:0;right:0;height:2px;background:#fff}
   .burger span::before{top:-6px} .burger span::after{top:6px}
-
   .center-return{
     position:absolute; left:50%; transform:translateX(-50%);
     height:36px; padding:0 14px; border-radius:999px;
@@ -42,11 +39,9 @@
     font-weight:700; cursor:pointer;
   }
   .center-return:hover{background:#ffffff33; border-color:#ffffff66}
-
   .search{margin-left:auto;display:flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 10px;height:40px;min-width:220px}
   .search input{border:0;outline:none;width:180px;background:transparent;font-size:14px}
   .account{display:flex;align-items:center;gap:8px;background:#fff1;border:1px solid #fff3;color:#fff;height:40px;padding:0 12px;border-radius:999px}
-
   .subnav{background:var(--blue);color:#fff;padding:10px 16px 14px;box-shadow:var(--shadow)}
   .subnav-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:12px}
   .menu-strip{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
@@ -62,12 +57,13 @@
     background:#fff; color:#0b3f51; border-color:#fff; font-weight:800;
     box-shadow:0 2px 12px rgba(0,0,0,.18);
   }
-
   .wrap{max-width:1000px;margin:18px auto;padding:0 16px}
   .page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
   .page-head h1{margin:0;font-size:22px}
   .page-head p{margin:4px 0 0;color:var(--muted);font-size:14px}
-
+  .head-actions{display:flex;gap:10px}
+  .tiny-btn{height:36px;border-radius:10px;border:1px solid #e6ebf2;background:#fff;color:#2c5f77;padding:0 12px;font-weight:700;cursor:pointer}
+  .tiny-btn:hover{box-shadow:var(--shadow)}
   .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow)}
   .form-card{padding:14px}
   .list{display:grid;gap:12px}
@@ -81,8 +77,6 @@
   .title{font-weight:800;font-size:16px;margin:0 0 4px}
   .desc{color:var(--muted);font-size:14px;line-height:1.55;margin:0}
   .points{align-self:center;white-space:nowrap;background:#ecf5f8;color:#21647b;font-weight:700;padding:6px 10px;border-radius:999px;font-size:13px}
-
-  /* 1 + 1 = 11, hahaha*/
   .radio{
     appearance:none;-webkit-appearance:none;-moz-appearance:none;
     width:22px;height:22px;border-radius:50%;border:2px solid #a8b3c7;margin-top:2px;cursor:pointer;
@@ -91,38 +85,24 @@
   .radio:checked{border-color:var(--blue)}
   .radio:checked::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--blue)}
   .option:active .radio{transform:scale(.96)}
-
   .actions{position:sticky;bottom:0;margin-top:14px;background:transparent;padding:8px 0 2px;display:flex;justify-content:center;gap:10px}
   .btn{height:42px;border-radius:12px;border:1px solid #e6ebf2;background:#f8fafc;padding:0 16px;font-weight:700;color:#2c5f77;cursor:pointer}
   .btn-primary{background:linear-gradient(0deg,#1e6b82,#2d89a7);color:#fff;border:0;box-shadow:var(--shadow)}
   .btn-primary[disabled]{opacity:.5;cursor:not-allowed}
-
-  /* embeded big dick */
-  .backdrop{
-    position:fixed; inset:0; background:rgba(0,0,0,.24);
-    display:none; z-index:40;
-  }
+  .backdrop{position:fixed; inset:0; background:rgba(0,0,0,.24); display:none; z-index:40;}
   .backdrop.show{display:block}
-  .modal{
-    position:fixed; inset:0; display:none; z-index:41; 
-    padding:24px; 
-  }
+  .modal{position:fixed; inset:0; display:none; z-index:41; padding:24px;}
   .modal.show{display:grid; place-items:center}
-
   .modal-card{
     width:min(900px, calc(100vw - 40px));
     max-height:80vh; overflow:auto;
     background:#fff; border-radius:16px; box-shadow:0 12px 40px rgba(0,0,0,.22);
     padding:18px;
   }
-
-  .modal-head{
-    display:flex; align-items:center; gap:12px; margin-bottom:8px;
-  }
-  .modal-head .back-link{
-    appearance:none; background:#f3f7fb; border:1px solid #e6ebf2; color:#2c5f77;
-    height:34px; padding:0 12px; border-radius:10px; font-weight:700; cursor:pointer;
-  }
+  .modal.dual .modal-card{width:min(520px, calc(50vw - 48px))}
+  .modal.dual .modal-wrap{display:flex; gap:16px; align-items:flex-start; justify-content:center}
+  .modal-head{display:flex; align-items:center; gap:12px; margin-bottom:8px}
+  .modal-head .back-link{appearance:none; background:#f3f7fb; border:1px solid #e6ebf2; color:#2c5f77;height:34px; padding:0 12px; border-radius:10px; font-weight:700; cursor:pointer}
   .modal h2{margin:0 0 6px; font-size:18px}
   .section{background:#fff;border:1px solid #eef1f5;border-radius:12px;padding:14px}
   .section + .section{margin-top:14px}
@@ -131,145 +111,98 @@
   .choice{display:flex;align-items:center;gap:10px;margin:12px 0}
   .choice label{font-size:15px;color:#1a1e24}
   .submit-row{display:flex;justify-content:center;margin-top:14px}
-
-  /* kiss my balls */
-  .choice .radio{
-    position:absolute;
-    width:1px;height:1px;margin:0;padding:0;border:0;
-    clip:rect(0 0 0 0); clip-path:inset(50%);
-    overflow:hidden; white-space:nowrap;
-  }
-  .choice label{
-    position:relative;
-    padding-left:34px;         
-    cursor:pointer;
-    line-height:1.5;
-  }
-  .choice .radio + label::before{
-    content:"";
-    position:absolute; left:0; top:2px;
-    width:22px; height:22px;                
-    border:2px solid #a8b3c7; border-radius:50%;
-    background:#fff; box-sizing:border-box;
-  }
+  .choice .radio{position:absolute;width:1px;height:1px;margin:0;padding:0;border:0;clip:rect(0 0 0 0); clip-path:inset(50%);overflow:hidden; white-space:nowrap;}
+  .choice label{position:relative;padding-left:34px;cursor:pointer;line-height:1.5;}
+  .choice .radio + label::before{content:"";position:absolute; left:0; top:2px;width:22px; height:22px;border:2px solid #a8b3c7; border-radius:50%;background:#fff; box-sizing:border-box;}
   .choice .radio:checked + label::before{border-color:var(--blue);}
-  .choice .radio:checked + label::after{
-    content:"";
-    position:absolute; left:5px; top:7px;    
-    width:12px; height:12px; border-radius:50%;
-    background:var(--blue);
-  }
+  .choice .radio:checked + label::after{content:"";position:absolute; left:5px; top:7px;width:12px; height:12px; border-radius:50%;background:var(--blue);}
   .choice .radio:focus-visible + label::before{box-shadow: var(--ring);}
-
-  /* formatting the two windows */
-  .modal-wrap{display:block;} 
-  .modal.dual .modal-wrap{
-    display:flex; gap:16px; align-items:flex-start; justify-content:center;
-  }
-  /* same size of two cards === */
-  .modal.dual .modal-card{
-    width:min(520px, calc(50vw - 48px));
-    max-height:80vh;
-  }
-
-  /* result */
+  .modal-wrap{display:block;}
   .summary-table{width:100%; border-collapse:collapse; table-layout:fixed}
-  .summary-table th, .summary-table td{
-    border:1px solid #1a1e24; padding:10px; vertical-align:top;
-  }
+  .summary-table th, .summary-table td{border:1px solid #1a1e24; padding:10px; vertical-align:top;}
   .summary-table thead th{font-size:20px; text-align:center}
   .summary-table tfoot th{font-size:20px; text-align:left}
   .summary-actions{display:flex; justify-content:space-between; gap:12px; margin-top:14px}
 </style>
 </head>
 <body>
-  <!-- Topbar -->
   <header class="topbar">
-    <div class="burger" aria-label="Open menu"><span></span></div>
-    <button class="center-return" type="button" onclick="location.href='portal.html'">
-      Go back to user portal
-    </button>
-    <label class="search" aria-label="Search">
-      <input type="search" placeholder="Search" />
-    </label>
+    <div class="burger"><span></span></div>
+    <button class="center-return" type="button" onclick="location.href='portal.html'">Go back to user portal</button>
+    <label class="search"><input type="search" placeholder="Search" /></label>
     <div class="account">Account</div>
   </header>
 
-  <!-- Subnav -->
   <nav class="subnav">
     <div class="subnav-inner">
       <div class="menu-strip">
-        <button class="menu-chip" type="button" onclick="location.href='visa_options.html'">Visa Options</button>
+        <button class="menu-chip is-current" type="button">Visa Options</button>
         <button class="menu-chip" type="button" onclick="location.href='occupation_list.html'">Occupation List</button>
         <button class="menu-chip" type="button" onclick="location.href='student_resources.html'">Student Resources</button>
         <button class="menu-chip" type="button" onclick="location.href='migration_news.html'">Migration News</button>
         <button class="menu-chip" type="button" onclick="location.href='quick_news.html'">Quick News</button>
-        <button class="menu-chip is-current" type="button">Points Calculator</button>
+        <button class="menu-chip" type="button" onclick="location.href='dickCalculator.html'">Points Calculator</button>
       </div>
     </div>
   </nav>
 
-  <!-- Content -->
   <main class="wrap">
     <div class="page-head">
       <div>
         <h1>Visa Options</h1>
         <p>Select one option to continue. Points are indicative only.</p>
       </div>
+      <div class="head-actions">
+        <button class="tiny-btn" onclick="location.href='shit_history.html'">View History</button>
+      </div>
     </div>
 
     <form id="visaForm" class="card form-card" action="#" method="post" aria-labelledby="visaHeading">
       <h2 id="visaHeading" style="margin:4px 6px 12px;font-size:16px;color:#506377;">Select a visa option</h2>
-
       <div class="list" role="radiogroup" aria-labelledby="visaHeading">
-        <!-- 188 cups of shit-->
         <label class="option">
           <input class="radio" type="radio" name="visa_option" value="188" required />
           <div>
             <p class="title">Business Innovation and Investment (Provisional) visa (subclass 188)</p>
             <p class="desc">Provisional visa for business innovation and investment streams.</p>
           </div>
-          <div class="points" aria-hidden="true">Points: 0</div>
+          <div class="points">Points: 0</div>
         </label>
 
-        <!-- 189 blocks of shit-->
         <label class="option">
           <input class="radio" type="radio" name="visa_option" value="189" />
           <div>
             <p class="title">Skilled Independent Visa (Subclass 189)</p>
             <p class="desc">Permanent visa for skilled workers without sponsorship.</p>
           </div>
-          <div class="points" aria-hidden="true">Points: 0</div>
+          <div class="points">Points: 0</div>
         </label>
 
-        <!-- 190 piles of shit-->
         <label class="option">
           <input class="radio" type="radio" name="visa_option" value="190" />
           <div>
             <p class="title">Skilled Nominated Visa (Subclass 190)</p>
             <p class="desc">Permanent visa for skilled workers nominated by a state or territory.</p>
           </div>
-          <div class="points" aria-hidden="true">Points: 15</div>
+          <div class="points">Points: 15</div>
         </label>
 
-        <!-- 489 tons of shit-->
         <label class="option">
           <input class="radio" type="radio" name="visa_option" value="489" />
           <div>
             <p class="title">Skilled Regional (Provisional) visa (subclass 489)</p>
             <p class="desc">Provisional visa for regional skilled migration pathways.</p>
           </div>
-          <div class="points" aria-hidden="true">Points: 0</div>
+          <div class="points">Points: 0</div>
         </label>
 
-        <!-- 491 pieces of shit-->
         <label class="option">
           <input class="radio" type="radio" name="visa_option" value="491" />
           <div>
             <p class="title">Skilled Work Regional (Provisional) Visa (Subclass 491)</p>
-            <p class="desc">Provisional visa for skilled workers nominated by a state or sponsored by a family member.</p>
+            <p class="desc">Provisional visa for skilled workers nominated by a state or sponsored by family.</p>
           </div>
-          <div class="points" aria-hidden="true">Points: 5</div>
+          <div class="points">Points: 15</div>
         </label>
       </div>
 
@@ -280,279 +213,27 @@
     </form>
   </main>
 
-  <!-- embeded large dick -->
   <div id="backdrop" class="backdrop" tabindex="-1" aria-hidden="true"></div>
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-hidden="true">
     <div class="modal-wrap" id="modalWrap">
-      <!-- left quiz -->
       <div class="modal-card" id="formCard">
         <div class="modal-head">
           <button class="back-link" type="button" id="modalBack">Back</button>
-          <h2 id="mTitle">Subclass 188 — Points Calculator</h2>
+          <h2 id="mTitle">Points Calculator</h2>
         </div>
-
-        <!-- Special endorsement -->
-        <section class="section">
-          <h3>Special endorsement</h3>
-          <div class="blurb">
-            The nominating State or Territory government agency has determined that
-            your proposed business is of unique and important benefit to the State or
-            Territory where the nominating government agency is located
-          </div>
-          <div class="choice">
-            <input class="radio" id="endorse_yes" type="radio" name="endorsement" value="yes">
-            <label for="endorse_yes">Yes - (Points 10)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="endorse_no" type="radio" name="endorsement" value="no">
-            <label for="endorse_no">No - (Points 0)</label>
-          </div>
-        </section>
-
-        <!-- Financial ass -->
-        <section class="section">
-          <h3>Financial assets</h3>
-          <div class="blurb">
-            Net business and personal assets of you, your partner or you and your partner combined
-            in each of the preceding 2 fiscal years of at least:
-          </div>
-
-          <div class="choice">
-            <input class="radio" id="asset_125" type="radio" name="assets" value="1.25">
-            <label for="asset_125">Not less than AUD1.25 million - (Points 5)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="asset_175" type="radio" name="assets" value="1.75">
-            <label for="asset_175">Not less than AUD1.75 million - (Points 15)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="asset_225" type="radio" name="assets" value="2.25">
-            <label for="asset_225">Not less than AUD2.25 million - (Points 25)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="asset_275" type="radio" name="assets" value="2.75">
-            <label for="asset_275">Not less than AUD2.75 million - (Points 35)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="asset_na" type="radio" name="assets" value="0">
-            <label for="asset_na">Not applicable - (Points 0)</label>
-          </div>
-        </section>
-
-        <!-- Business turnover -->
-        <section class="section">
-          <h3>Business turnover</h3>
-          <div class="blurb">
-            You had an ownership interest in one or more main businesses that had an annual turnover
-            in at least 2 of the 4 fiscal years immediately before the time of invitation to apply for the visa
-          </div>
-          <div class="choice">
-            <input class="radio" id="turn_750" type="radio" name="turnover" value="0.75">
-            <label for="turn_750">Not less than AUD750,000 - (Points 5)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="turn_125" type="radio" name="turnover" value="1.25">
-            <label for="turn_125">Not less than AUD1.25 million - (Points 15)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="turn_175" type="radio" name="turnover" value="1.75">
-            <label for="turn_175">Not less than AUD1.75 million - (Points 25)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="turn_225" type="radio" name="turnover" value="2.25">
-            <label for="turn_225">Not less than AUD2.25 million - (Points 35)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="turn_na" type="radio" name="turnover" value="0">
-            <label for="turn_na">Not applicable - (Points 0)</label>
-          </div>
-        </section>
-
-        <!-- Bu -->
-        <section class="section">
-          <h3>Business Innovation stream only - Business experience</h3>
-          <div class="blurb">
-            You have held one or more main businesses before you were invited to apply for the visa for
-          </div>
-          <div class="choice">
-            <input class="radio" id="bizexp_4in5" type="radio" name="biz_experience" value="4in5">
-            <label for="bizexp_4in5">Not less than 4 years within the preceding 5 years - (Points 10)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="bizexp_7in8" type="radio" name="biz_experience" value="7in8">
-            <label for="bizexp_7in8">Not less than 7 years within the preceding 8 years - (Points 15)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="bizexp_na" type="radio" name="biz_experience" value="0">
-            <label for="bizexp_na">Not applicable - (Points 0)</label>
-          </div>
-        </section>
-
-        <!-- Invest a cup of shit -->
-        <section class="section">
-          <h3>Investor stream only - Investor experience</h3>
-          <div class="blurb">
-            Immediately before the time of application you held eligible investments of at least AUD250,000 held for
-          </div>
-          <div class="choice">
-            <input class="radio" id="invexp_4" type="radio" name="investor_experience" value="4">
-            <label for="invexp_4">Not less than 4 years before the time of invitation to apply for the visa - (Points 10)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="invexp_7" type="radio" name="investor_experience" value="7">
-            <label for="invexp_7">Not less than 7 years before the time of invitation to apply for the visa - (Points 15)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="invexp_na" type="radio" name="investor_experience" value="0">
-            <label for="invexp_na">Not applicable - (Points 0)</label>
-          </div>
-        </section>
-
-        <!-- none of my business -->
-        <section class="section">
-          <h3>Business innovation qualifications</h3>
-          <div class="blurb">Select your business qualifications</div>
-
-          <div class="choice">
-            <input class="radio" id="qual_patent" type="radio" name="biz_qual" value="patent15">
-            <label for="qual_patent">
-              Patents or designs registered not less than 1 year before that time and used in the day to day activities of the main business - (Points 15)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="qual_tm" type="radio" name="biz_qual" value="trademark10">
-            <label for="qual_tm">
-              Trademarks registered not less than 1 year before that time and used in the day to day activities of the main business - (Points 10)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="qual_jv" type="radio" name="biz_qual" value="jv5">
-            <label for="qual_jv">
-              An ownership in and day to day participation in the management of one or more main business operated under a formal joint venture agreement/s entered into no less than 1 year before the time - (Points 5)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="qual_export" type="radio" name="biz_qual" value="export15">
-            <label for="qual_export">
-              An ownership interest in a main business/s that derives no less than 50% of its annual turnover from export trade - (Points 15)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="qual_growth" type="radio" name="biz_qual" value="growth10">
-            <label for="qual_growth">
-              An ownership interest in a main business/s not more than 5 years before had an average annualised growth in turnover &gt; 20% per annum over 3 continuous fiscal years and in at least one of the 3 fiscal years employed 10 or more employees (hours equivalent to 10 full-time employees) - (Points 10)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="qual_grant" type="radio" name="biz_qual" value="grant10">
-            <label for="qual_grant">
-              An ownership interest in a main business/s that received a grant from a government body in your home country of at least AUD10,000 for early phase start up / product commercialisation / business development / business expansion - (Points 10)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="qual_vc" type="radio" name="biz_qual" value="vc10">
-            <label for="qual_vc">
-              An ownership interest in a main business/s that received venture capital funding of at least AUD100,000 not more than 4 years before the time of the invitation for the purposes of early phase start up / product commercialisation / business development / business expansion - (Points 10)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="qual_na" type="radio" name="biz_qual" value="0">
-            <label for="qual_na">Not applicable - (Points 0)</label>
-          </div>
-        </section>
-
-        <!-- old shit -->
-        <section class="section">
-          <h3>Age</h3>
-          <div class="blurb">Which age band do you fit into?</div>
-
-          <div class="choice">
-            <input class="radio" id="age_18_24" type="radio" name="age_band" value="18-24">
-            <label for="age_18_24">18-24 years - (Points 20)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="age_25_32" type="radio" name="age_band" value="25-32">
-            <label for="age_25_32">25-32 years - (Points 30)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="age_33_39" type="radio" name="age_band" value="33-39">
-            <label for="age_33_39">33-39 years - (Points 25)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="age_40_44" type="radio" name="age_band" value="40-44">
-            <label for="age_40_44">40-44 years - (Points 20)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="age_45_54" type="radio" name="age_band" value="45-54">
-            <label for="age_45_54">45-54 years - (Points 15)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="age_55p" type="radio" name="age_band" value="55+">
-            <label for="age_55p">55 and older - (Points 0)</label>
-          </div>
-        </section>
-
-        <!-- Woe-->
-        <section class="section">
-          <h3>English language requirements</h3>
-          <div class="blurb">How would you rate your English language ability?</div>
-
-          <div class="choice">
-            <input class="radio" id="eng_voc" type="radio" name="eng_level" value="vocational">
-            <label for="eng_voc">Vocational English - (Points 5)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="eng_prof" type="radio" name="eng_level" value="proficient">
-            <label for="eng_prof">Proficient English - (Points 10)</label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="eng_na" type="radio" name="eng_level" value="0">
-            <label for="eng_na">Not applicable - (Points 0)</label>
-          </div>
-        </section>
-
-        <!-- Educational Qualifications -->
-        <section class="section">
-          <h3>Educational Qualifications</h3>
-          <div class="blurb">What is your highest qualification?</div>
-
-          <div class="choice">
-            <input class="radio" id="edu_5" type="radio" name="education" value="5">
-            <label for="edu_5">
-              Trade certificate, diploma or bachelor degree by an Australian education institute; or a bachelor qualification recognised by an educational institution of a recognised standard - (Points 5)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="edu_10" type="radio" name="education" value="10">
-            <label for="edu_10">
-              A Bachelor degree in business, science or technology by an Australian institution; or a bachelor qualification in business, science or technology by an educational institution of a recognised standard - (Points 10)
-            </label>
-          </div>
-          <div class="choice">
-            <input class="radio" id="edu_na" type="radio" name="education" value="0">
-            <label for="edu_na">Not applicable - (Points 0)</label>
-          </div>
-        </section>
-
+        <div id="sections"></div>
         <div class="submit-row">
-          <button type="button" class="btn btn-primary" id="modalSubmit">Submit</button>
+          <button type="button" class="btn btn-primary" id="modalSubmit">Calculate Points</button>
         </div>
       </div>
 
-      <!-- result table which is hidden before submit -->
       <div class="modal-card" id="summaryCard" style="display:none">
-        <div class="modal-head">
-          <h2>Points Breakdown</h2>
-        </div>
+        <div class="modal-head"><h2>Points Breakdown</h2></div>
         <section class="section">
           <table class="summary-table">
-            <thead>
-              <tr><th>Subject</th><th>Points</th></tr>
-            </thead>
+            <thead><tr><th>Subject</th><th>Points</th></tr></thead>
             <tbody id="summaryBody"></tbody>
-            <tfoot>
-              <tr><th>Total:</th><th id="summaryTotal">0</th></tr>
-            </tfoot>
+            <tfoot><tr><th>Total:</th><th id="summaryTotal">0</th></tr></tfoot>
           </table>
           <div class="summary-actions">
             <button class="btn" type="button" id="summaryCancel">Cancel</button>
@@ -564,70 +245,252 @@
   </div>
 
 <script>
-  // fool? 
-  const STORAGE_KEY = 'visa188_modal_state_v3';
+  const VISA_FORMS = {
+    "188": {
+      title:"Subclass 188 — Points Calculator",
+      sections:[
+        {h:"Special endorsement", blurb:"The nominating State or Territory government agency has determined your proposed business is of unique and important benefit.", opts:[
+          ["Yes - (Points 10)",10],["No - (Points 0)",0]
+        ]},
+        {h:"Financial assets", blurb:"Net business and personal assets of you, your partner or you and your partner combined in each of the preceding 2 fiscal years of at least:", opts:[
+          ["Not less than AUD1.25 million - (Points 5)",5],
+          ["Not less than AUD1.75 million - (Points 15)",15],
+          ["Not less than AUD2.25 million - (Points 25)",25],
+          ["Not less than AUD2.75 million - (Points 35)",35],
+          ["Not applicable - (Points 0)",0],
+        ]},
+        {h:"Business turnover", blurb:"You had an ownership interest in one or more main businesses that had an annual turnover in at least 2 of the 4 fiscal years immediately before invitation:", opts:[
+          ["Not less than AUD750,000 - (Points 5)",5],
+          ["Not less than AUD1.25 million - (Points 15)",15],
+          ["Not less than AUD1.75 million - (Points 25)",25],
+          ["Not less than AUD2.25 million - (Points 35)",35],
+          ["Not applicable - (Points 0)",0],
+        ]},
+        {h:"Business Innovation stream only - Business experience", blurb:"You have held one or more main businesses before you were invited to apply for the visa for:", opts:[
+          ["Not less than 4 years within the preceding 5 years - (Points 10)",10],
+          ["Not less than 7 years within the preceding 8 years - (Points 15)",15],
+          ["Not applicable - (Points 0)",0],
+        ]},
+        {h:"Investor stream only - Investor experience", blurb:"Immediately before the time of application you held eligible investments of at least AUD250,000 held for:", opts:[
+          ["Not less than 4 years - (Points 10)",10],
+          ["Not less than 7 years - (Points 15)",15],
+          ["Not applicable - (Points 0)",0],
+        ]},
+        {h:"Business innovation qualifications", blurb:"Select your business qualifications", opts:[
+          ["Patents or designs … used in the day to day activities of the main business - (Points 15)",15],
+          ["Trademarks … used in the day to day activities of the main business - (Points 10)",10],
+          ["Formal joint venture participation … - (Points 5)",5],
+          ["Export trade ≥50% of turnover - (Points 15)",15],
+          ["Avg. turnover growth >20% over 3 years and employed ≥10 - (Points 10)",10],
+          ["Government grant ≥ AUD10,000 - (Points 10)",10],
+          ["Venture capital funding ≥ AUD100,000 within 4 years - (Points 10)",10],
+          ["Not applicable - (Points 0)",0],
+        ]},
+        {h:"Age", blurb:"Which age band do you fit into?", opts:[
+          ["18–24 years - (Points 20)",20],
+          ["25–32 years - (Points 30)",30],
+          ["33–39 years - (Points 25)",25],
+          ["40–44 years - (Points 20)",20],
+          ["45–54 years - (Points 15)",15],
+          ["55 and older - (Points 0)",0],
+        ]},
+        {h:"English language requirements", blurb:"How would you rate your English language ability?", opts:[
+          ["Vocational English - (Points 5)",5],
+          ["Proficient English - (Points 10)",10],
+          ["Not applicable - (Points 0)",0],
+        ]},
+        {h:"Educational Qualifications", blurb:"What is your highest qualification?", opts:[
+          ["Trade certificate, diploma or bachelor degree (recognised) - (Points 5)",5],
+          ["Bachelor in business/science/technology (recognised) - (Points 10)",10],
+          ["Not applicable - (Points 0)",0],
+        ]},
+      ]
+    },
+    "189": {
+      title:"Subclass 189 — Points Calculator",
+      sections: baseSkilledSections({includeNomination:false})
+    },
+    "190": {
+      title:"Subclass 190 — Points Calculator",
+      sections: baseSkilledSections({includeNomination:true, nominationText:"Have you been nominated to apply for this visa?", nominationItems:[
+        ["You were nominated by a State or Territory government agency - (Points 5)",5],
+        ["Not applicable - (Points 0)",0]
+      ]})
+    },
+    "489": {
+      title:"Subclass 489 — Points Calculator",
+      sections: baseSkilledSections({includeNomination:true, nominationText:"Have you been nominated or sponsored to apply for this visa?", nominationItems:[
+        ["You were invited to apply for a Skilled Regional (Provisional) (subclass 489) visa because you were nominated and the nominating State or Territory government agency has not withdrawn that nomination - (Points 15)",15],
+        ["You are being sponsored for a Skilled Regional (Provisional) (subclass 489) visa by a family member and the Minister has accepted that sponsorship - (Points 15)",15],
+        ["Not applicable - (Points 0)",0]
+      ]})
+    },
+    "491": {
+      title:"Subclass 491 — Points Calculator",
+      sections: baseSkilledSections({includeNomination:true, nominationText:"Have you been nominated or sponsored to apply for this visa?", nominationItems:[
+        ["You were invited to apply for a Skilled Work Regional (Provisional) visa (subclass 491) because you were nominated and the nominating State or Territory government agency has not withdrawn that nomination - (Points 15)",15],
+        ["You are being sponsored for a Skilled Work Regional (Provisional) visa (subclass 491) by a family member and the Minister has accepted that sponsorship - (Points 15)",15],
+        ["Not applicable - (Points 0)",0]
+      ]})
+    }
+  };
 
+  function baseSkilledSections({includeNomination=false, nominationText="", nominationItems=[]}={}){
+    const common = [
+      {h:"Age", blurb:"Which age band do you fit into?", opts:[
+        ["at least 18 but less than 25 years - (Points 25)",25],
+        ["at least 25 but less than 33 years - (Points 30)",30],
+        ["at least 33 but less than 40 years - (Points 25)",25],
+        ["at least 40 but less than 45 years - (Points 15)",15],
+        ["over 45 years - (Points 0)",0],
+      ]},
+      {h:"English language requirements", blurb:"How would you rate your English language ability?", opts:[
+        ["Competent English - (Points 0)",0],
+        ["Proficient English - (Points 10)",10],
+        ["Superior English - (Points 20)",20],
+      ]},
+      {h:"Skilled employment outside Australia", blurb:"Skilled employment outside Australia", opts:[
+        ["Less than 3 years - (Points 0)",0],
+        ["At least 3 but less than 5 years - (Points 5)",5],
+        ["At least 5 but less than 8 years - (Points 10)",10],
+        ["At least 8 years - (Points 15)",15],
+      ]},
+      {h:"Australian skilled employment", blurb:"Skilled employment in Australia", opts:[
+        ["Less than 1 year - (Points 0)",0],
+        ["At least 1 but less than 3 years - (Points 5)",5],
+        ["At least 3 but less than 5 years - (Points 10)",10],
+        ["At least 5 but less than 8 years - (Points 15)",15],
+        ["At least 8 years - (Points 20)",20],
+      ]},
+      {h:"Educational qualifications", blurb:"What is your highest educational qualification?", opts:[
+        ["A Doctorate … recognised standard. - (Points 20)",20],
+        ["At least a Bachelor degree … recognised standard. - (Points 15)",15],
+        ["A diploma or trade qualification … Australian educational institution. - (Points 10)",10],
+        ["Qualification recognised by the relevant assessing authority as suitable for your nominated occupation. - (Points 10)",10],
+        ["No Recognised Qualifications. - (Points 0)",0],
+      ]},
+      {h:"Specialist education qualification", blurb:"Do you have a Masters degree by research or a Doctorate degree from an Australian educational institution that included at least 2 academic years study in a relevant field?", opts:[
+        ["Yes - (Points 10)",10],
+        ["No - (Points 0)",0],
+      ]},
+      {h:"Australian study requirement", blurb:"Do you have at least 1 degree, diploma or trade qualification from an Australian educational institution that meets the Australian study requirement?", opts:[
+        ["Yes - (Points 5)",5],
+        ["No - (Points 0)",0],
+      ]},
+      {h:"Professional Year in Australia", blurb:"Did you complete a professional year in Australia?", opts:[
+        ["Yes - (Points 5)",5],
+        ["No - (Points 0)",0],
+      ]},
+      {h:"Credentialed community language", blurb:"Have you been accredited at the paraprofessional level or above, certified at the certified provisional level or above, or have a community language credential for interpreting or translating by the National Accreditation Authority for Translators and Interpreters.?", opts:[
+        ["Yes - (Points 5)",5],
+        ["No - (Points 0)",0],
+      ]},
+      {h:"Study in regional Australia", blurb:"Do you have at least 1 degree, diploma or trade qualification from an Australian educational institution that satisfies the Australian study requirement obtained while living and studying in an eligible area of regional Australia?", opts:[
+        ["Yes - (Points 5)",5],
+        ["No - (Points 0)",0],
+      ]},
+      {h:"Partner skills", blurb:"Select the relevant partner skills qualifications", opts:[
+        ["Your spouse or de facto partner is also an applicant for this visa and meets age, English and skill criteria. - (Points 10)",10],
+        ["Your spouse or de facto partner is also an applicant for this visa and has competent English. - (Points 5)",5],
+        ["You are single or your partner is an Australian citizen or permanent resident. - (Points 10)",10],
+      ]},
+    ];
+    if(includeNomination){
+      common.push({h:"Nomination or sponsorship", blurb:nominationText, opts: nominationItems});
+    }
+    return common;
+  }
+
+  const STORAGE_PREFIX = 'visa_modal_state_v1_';
   const form      = document.getElementById('visaForm');
   const nextBtn   = document.getElementById('nextBtn');
   const modal     = document.getElementById('modal');
   const backdrop  = document.getElementById('backdrop');
   const modalBack = document.getElementById('modalBack');
   const modalSubmit = document.getElementById('modalSubmit');
+  const mTitle = document.getElementById('mTitle');
+  const sectionsHost = document.getElementById('sections');
   const summaryCard  = document.getElementById('summaryCard');
   const summaryBody  = document.getElementById('summaryBody');
   const summaryTotal = document.getElementById('summaryTotal');
   const summaryCancel= document.getElementById('summaryCancel');
   const summarySave  = document.getElementById('summarySave');
 
-  // Next
+  let currentVisa = null;
+
   form.addEventListener('change', () => {
     const checked = form.querySelector('input[type="radio"][name="visa_option"]:checked');
     nextBtn.disabled = !checked;
   });
 
-  // 188
   nextBtn.addEventListener('click', () => {
     const choice = form.querySelector('input[name="visa_option"]:checked')?.value;
-    if (choice === '188') {
-      openModal();
-    }
+    if (!choice) return;
+    openModal(choice);
   });
 
-  // close the god damn thing
-  const closeModal = () => {
-    modal.classList.remove('show');
-    modal.classList.remove('dual');     /* remove format when cancle */
-    summaryCard.style.display = 'none'; /* wai bi ba bu === */
-    backdrop.classList.remove('show');
-    modal.setAttribute('aria-hidden','true');
-    backdrop.setAttribute('aria-hidden','true');
-    saveModalState(); // save that mother fuck
-  };
   modalBack.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
 
-  function openModal(){
+  function closeModal(){
+    modal.classList.remove('show','dual');
+    summaryCard.style.display = 'none';
+    backdrop.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    backdrop.setAttribute('aria-hidden','true');
+    saveModalState();
+  }
+
+  function openModal(visa){
+    currentVisa = visa;
+    const def = VISA_FORMS[visa];
+    if (!def) return;
+    mTitle.textContent = def.title;
+    renderSections(def);
     loadModalState();
-    setPoints(); 
     modal.classList.add('show');
     backdrop.classList.add('show');
     modal.setAttribute('aria-hidden','false');
     backdrop.setAttribute('aria-hidden','false');
   }
 
-  function saveModalState(){
-    const checked = document.querySelectorAll('#formCard input[type="radio"]:checked');
-    const data = {};
-    checked.forEach(el => { data[el.name] = el.value; });
-    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(e){}
+  function renderSections(def){
+    sectionsHost.innerHTML = '';
+    def.sections.forEach((sec, idx)=>{
+      const wrap = document.createElement('section');
+      wrap.className = 'section';
+      const gid = `g_${currentVisa || 'x'}_${idx}`;
+      let html = `<h3>${sec.h}</h3>`;
+      if (sec.blurb) html += `<div class="blurb">${sec.blurb}</div>`;
+      sec.opts.forEach((o,i)=>{
+        const id = `${gid}_${i}`;
+        html += `
+          <div class="choice">
+            <input class="radio" id="${id}" type="radio" name="${gid}" value="${o[1]}">
+            <label for="${id}">${o[0]}</label>
+          </div>`;
+      });
+      wrap.innerHTML = html;
+      sectionsHost.appendChild(wrap);
+    });
   }
+
+  function saveModalState(){
+    if (!currentVisa) return;
+    const checked = sectionsHost.querySelectorAll('input[type="radio"]:checked');
+    const data = {};
+    checked.forEach(el => { data[el.name] = el.id; });
+    try{ localStorage.setItem(STORAGE_PREFIX + currentVisa, JSON.stringify(data)); }catch(e){}
+  }
+
   function loadModalState(){
+    if (!currentVisa) return;
     try{
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(STORAGE_PREFIX + currentVisa);
       if(!raw) return;
       const data = JSON.parse(raw);
       Object.keys(data).forEach(name=>{
-        const el = document.querySelector(`#formCard input[type="radio"][name="${name}"][value="${data[name]}"]`);
+        const el = document.getElementById(data[name]);
         if (el) el.checked = true;
       });
     }catch(e){}
@@ -639,78 +502,38 @@
     }
   });
 
-  // submit the god damn shit
   modalSubmit.addEventListener('click', () => {
-    /* construct table */
     buildSummaryTable();
-    modal.classList.add('dual');       // double card
+    modal.classList.add('dual');
     summaryCard.style.display = 'block';
   });
 
-  // save that fucking shit
   window.addEventListener('beforeunload', saveModalState);
 
-  // setting values
-  function setPoints(){
-    if(!modal) return;
-    const radios = modal.querySelectorAll('input[type="radio"]');
-    radios.forEach((input) => {
-      const label = modal.querySelector(`label[for="${input.id}"]`);
-      let pts = 0;
-      if (label) {
-        const m = label.textContent.match(/\(Points\s*(\d+)\)/i);
-        if (m) pts = parseInt(m[1], 10);
-      }
-      input.dataset.points = String(pts);
-    });
-  }
-
-  function sum() {
-    const checked = document.querySelectorAll('#formCard input[type="radio"]:checked');
-    let total = 0;
-    checked.forEach((el) => total += parseInt(el.dataset.points || '0', 10));
-    return total;
-  }
-
-  /* present result */
   function buildSummaryTable(){
-    // clean 
     summaryBody.innerHTML = '';
-
-    // iterate sections
-    const sections = document.querySelectorAll('#formCard .section');
+    const secs = sectionsHost.querySelectorAll('.section');
     let total = 0;
-
-    sections.forEach((sec) => {
-      const subject = (sec.querySelector('h3')?.textContent || '').trim();
-
-      // name collection
-      const firstRadio = sec.querySelector('input[type="radio"]');
-      if (!firstRadio) return;
-      const groupName = firstRadio.name;
-      const checked = sec.querySelector(`input[name="${groupName}"]:checked`);
-
-      let pts = 0;
-      if (checked) pts = parseInt(checked.dataset.points || '0', 10);
+    secs.forEach((sec, idx)=>{
+      const subject = sec.querySelector('h3')?.textContent?.trim() || `Section ${idx+1}`;
+      const name = sec.querySelector('input[type="radio"]')?.name;
+      const checked = name ? sec.querySelector(`input[name="${name}"]:checked`) : null;
+      const pts = checked ? parseInt(checked.value,10) : 0;
       total += pts;
-
       const tr = document.createElement('tr');
       tr.innerHTML = `<td>${subject}</td><td>${pts}</td>`;
       summaryBody.appendChild(tr);
     });
-
     summaryTotal.textContent = total;
   }
 
-  /* bottons under table */
   summaryCancel?.addEventListener('click', () => {
-    // close table
     summaryCard.style.display = 'none';
     modal.classList.remove('dual');
   });
 
   summarySave?.addEventListener('click', () => {
-    console.log('Save clicked. (No-op for now)');
+    console.log('Points saved (placeholder).');
   });
 </script>
 </body>
