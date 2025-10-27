@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AUSWO User Portal (Mockup)</title>
+<title>AUSWO</title>
 <style>
   :root{
     --blue:#2d89a7;
@@ -230,6 +230,146 @@
   adBackdrop.addEventListener('click',closeAd);
   adJoin.addEventListener('click',()=>window.location.href='monkey.html');
 </script>
+
+<!-- === AI Chatbot Floating Widget === -->
+<div id="chatbot-button">💬</div>
+
+<div id="chatbot-window" class="hidden">
+  <div class="chatbot-header">
+    <span>AI Assistant</span>
+    <button id="chatbot-close">✕</button>
+  </div>
+  <div id="chatbot-messages"></div>
+  <div class="chatbot-input-area">
+    <input id="chatbot-input" type="text" placeholder="Type your message..." />
+    <button id="chatbot-send">Send</button>
+  </div>
+</div>
+
+<style>
+  #chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--blue, #2d89a7);
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: transform 0.2s ease;
+  }
+  #chatbot-button:hover { transform: scale(1.1); }
+
+  #chatbot-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    height: 420px;
+    background: var(--card, #fff);
+    border-radius: var(--radius, 12px);
+    box-shadow: var(--shadow, 0 2px 8px rgba(0,0,0,0.15));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+  }
+  #chatbot-window.hidden { display: none; }
+
+  .chatbot-header {
+    background: var(--blue, #2d89a7);
+    color: white;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .chatbot-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+  }
+  #chatbot-input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+  }
+  #chatbot-send {
+    background: var(--blue, #2d89a7);
+    color: white;
+    border: none;
+    padding: 0 16px;
+    cursor: pointer;
+  }
+  .message {
+    margin: 6px 0;
+    padding: 8px 10px;
+    border-radius: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+  .user { background: var(--blue, #2d89a7); color: white; align-self: flex-end; }
+  .bot { background: #e9eef5; color: #333; align-self: flex-start; }
+</style>
+
+<script>
+  const btn = document.getElementById("chatbot-button");
+  const win = document.getElementById("chatbot-window");
+  const closeBtn = document.getElementById("chatbot-close");
+  const input = document.getElementById("chatbot-input");
+  const sendBtn = document.getElementById("chatbot-send");
+  const messages = document.getElementById("chatbot-messages");
+
+  btn.onclick = () => win.classList.toggle("hidden");
+  closeBtn.onclick = () => win.classList.add("hidden");
+
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    addMessage(text, "user");
+    input.value = "";
+
+    try {
+      const res = await fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ message: text })
+      });
+      const data = await res.json();
+      addMessage(data.reply || "No response", "bot");
+    } catch (e) {
+      addMessage("⚠️ Connection error.", "bot");
+    }
+  }
+
+  sendBtn.onclick = sendMessage;
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  function addMessage(text, type) {
+    const msg = document.createElement("div");
+    msg.className = `message ${type}`;
+    msg.textContent = text;
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
+<!-- === End of AI Chatbot Widget === -->
 
 </body>
 </html>
