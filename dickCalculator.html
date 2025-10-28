@@ -53,10 +53,6 @@
     transition: background .15s ease, border-color .15s ease, box-shadow .2s ease;
   }
   .menu-chip:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.45);box-shadow:0 2px 10px rgba(0,0,0,.15)}
-  .menu-chip.is-current{
-    background:#fff; color:#0b3f51; border-color:#fff; font-weight:800;
-    box-shadow:0 2px 12px rgba(0,0,0,.18);
-  }
   .wrap{max-width:1000px;margin:18px auto;padding:0 16px}
   .page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
   .page-head h1{margin:0;font-size:22px}
@@ -136,7 +132,7 @@
   <nav class="subnav">
     <div class="subnav-inner">
       <div class="menu-strip">
-        <button class="menu-chip is-current" type="button">Visa Options</button>
+        <button class="menu-chip" type="button">Visa Options</button>
         <button class="menu-chip" type="button" onclick="location.href='occupation_list.html'">Occupation List</button>
         <button class="menu-chip" type="button" onclick="location.href='student_resources.html'">Student Resources</button>
         <button class="menu-chip" type="button" onclick="location.href='migration_news.html'">Migration News</button>
@@ -536,5 +532,7 @@
     console.log('Points saved (placeholder).');
   });
 </script>
+
+
 </body>
 </html>
