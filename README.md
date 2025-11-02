@@ -1,2 +1,30 @@
 # iPhone-17-Tiny
-This is the version control and final implementation for AUSWO.com, including the website, database and AI chatbot.
+AUSWO Intelligent Immigration System
+University of Adelaide – Industry Project (2025)
+
+A web-based platform designed to help international students and skilled migrants in Australia explore job opportunities, calculate visa eligibility, and interact with an AI chatbot for guidance.
+
+🌐 Overview
+
+AUSWO integrates multiple technologies into a single platform:
+
+Web scraping of real-time job listings
+
+A backend system for visa point calculation and authentication
+
+A frontend interface for user interaction
+
+A chatbot prototype that provides automated support
+
+The project follows a five-phase process:
+1️⃣ Requirements Analysis 2️⃣ System Design 3️⃣ Development & Implementation 4️⃣ Testing & Validation 5️⃣ Deployment & Documentation
+👥 Team Contribution
+Name	Student ID	Role	Primary Responsibility
+Yusen Wang	A1898205	Web Scraping Developer	Implemented SEEK scraper (scraper/seek.js), integrated job data with MySQL
+Kunxin Liu	A1880707	UI/UX Designer	Designed system layout and interface flow in Figma
+Wing Yui Lam	A1880707	UI/UX Designer	Co-designed visual prototypes and user journey maps
+Yuhang Cai	A1865662	Frontend Developer	Developed HTML/CSS/JS pages and connected frontend to APIs
+Jiaqi Luo	A1900124	Backend & Database Engineer	Built MySQL schema, Express.js endpoints, and managed backend logic
+Jiahe Shi	A1808696	AI Chatbot Developer	Designed chatbot prototype and tested basic integration with backend
+
+All team members contributed equally through design, development, and testing phases.
