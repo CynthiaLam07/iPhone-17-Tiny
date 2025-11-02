@@ -1,8 +1,6 @@
 # iPhone-17-Tiny
-
 ### AUSWO Intelligent Immigration System  
 **University of Adelaide – Industry Project (2025)**
-
 A web-based platform designed to help international students and skilled migrants in Australia explore job opportunities, calculate visa eligibility, and interact with an AI chatbot for guidance.
 
 
