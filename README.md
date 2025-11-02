@@ -5,7 +5,6 @@ A web-based platform designed to help international students and skilled migrant
 
 
 ## Overview
-
 AUSWO integrates multiple technologies into a single platform:
 
 - Web scraping of real-time job listings  
@@ -14,7 +13,6 @@ AUSWO integrates multiple technologies into a single platform:
 - A chatbot prototype that provides automated support  
 
 ##  Project Process
-
 The project follows a five-phase process:  
 1. Requirements Analysis  
 2. System Design  
@@ -23,7 +21,6 @@ The project follows a five-phase process:
 5. Deployment & Documentation  
 
 ## Team Contribution
-
 **Team Members and Roles**
 
 | Name | Student ID | Role | Primary Responsibility |
