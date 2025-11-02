@@ -4,7 +4,7 @@
 A web-based platform designed to help international students and skilled migrants in Australia explore job opportunities, calculate visa eligibility, and interact with an AI chatbot for guidance.
 
 
-## Overview
+Overview
 AUSWO integrates multiple technologies into a single platform:
 
 - Web scraping of real-time job listings  
